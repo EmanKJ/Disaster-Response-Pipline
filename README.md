@@ -12,3 +12,7 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
+
+This resource I used to help me in solving the project: 
+https://www.tutorialspoint.com/python/python_tokenization
+https://github.com/ahmed14117/Disaster-Response-Pipeline-Project
