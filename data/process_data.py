@@ -5,6 +5,16 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
+    """
+    Description: This function load messages and categories data and marge them into one data frame called df
+
+    Arguments:
+    messages_filepath: the path of masseges file enter by the user. 
+    categories_filepath: the path of categoriese file enter by the user. 
+
+    Returns: data frame that marge both messages and categories
+
+    """
     messages = pd.read_csv(messages_filepath)
     messages.head()
     #-------------------------------------
@@ -16,6 +26,16 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    """
+    Description: This function cleaning the data frame (df) by spliting categories, and removing the duplucation
+
+    Arguments:
+    df: data frame that consists of messages and categories data
+
+    Returns: 
+    df after clean it
+
+    """
     categories = df.categories.str.split(';', expand = True)
     categories.head()
     # select the first row of the categories dataframe
@@ -52,6 +72,17 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename):
+    """
+    Description: This function save the cleaned dataframe (df) as a database
+    
+
+    Arguments:
+    df: cleaned data frame that consists of messages and categories data
+    database_filename : the name of the database specified by the user
+
+    Returns: None
+
+    """
     engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('CleanTable', engine, index=False)  
 
